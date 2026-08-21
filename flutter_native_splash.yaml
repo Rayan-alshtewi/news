@@ -1,0 +1,10 @@
+flutter_native_splash:
+  color: "#171717"
+
+
+  android_12:
+    image: assets/images/news_logo.png
+    icon_background_color: "#171717"
+    branding: assets/images/news_branding.png
+
+  web: false
