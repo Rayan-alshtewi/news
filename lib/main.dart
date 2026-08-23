@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:news/ui/news_Screen.dart';
+import 'package:news/ui/news_Screen_details.dart';
 import 'package:news/utils/app_routs.dart';
 
 void main() {
@@ -13,12 +14,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'News',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: .fromSeed(seedColor: Colors.deepPurple),
       ),
       routes:{
         AppRouts.newsScreen:(_)=>NewsScreen(),
+        AppRouts.newsScreenDetails:(_)=>NewsScreenDetails(),
       },
       initialRoute:AppRouts.newsScreen,
     );

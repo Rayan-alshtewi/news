@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:flutter/material.dart';
 import 'package:news/utils/app_colors.dart';
 class AppTextStyle {
   static final TextStyle medium14white = TextStyle(
@@ -33,6 +34,28 @@ class AppTextStyle {
     fontSize:16,
     fontWeight: FontWeight.w700,
     color:AppColors.white,
+    height: 1.5,
+    letterSpacing: -0.352,
+  );
+  static final TextStyle bold16black = TextStyle(
+    fontSize:16,
+    fontWeight: FontWeight.w700,
+    color:AppColors.black,
+    height: 1.5,
+    letterSpacing: -0.352,
+  );
+
+  static final TextStyle bold20black = TextStyle(
+    fontSize:20,
+    fontWeight: FontWeight.w700,
+    color:AppColors.black,
+    height: 1.5,
+    letterSpacing: -0.352,
+  );
+  static final TextStyle medium14blue = TextStyle(
+    fontSize:14,
+    fontWeight: FontWeight.w500,
+    color:Colors.indigo,
     height: 1.5,
     letterSpacing: -0.352,
   );
