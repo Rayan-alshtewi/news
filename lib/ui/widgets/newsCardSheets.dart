@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:news/utils/app_routs.dart';
 
+import '../../models/news_model.dart';
 import '../../utils/app_assets.dart';
 import '../../utils/app_colors.dart';
 import '../../utils/app_text_style.dart';
+import 'package:url_launcher/url_launcher.dart';
 class Newscardsheets extends StatelessWidget {
-
+  final NewsModel news;
+  const Newscardsheets({
+    super.key,
+    required this.news,
+  });
 @override
 Widget build(BuildContext context) {
   return Padding(
@@ -25,26 +31,44 @@ Widget build(BuildContext context) {
             borderRadius: const BorderRadius.vertical(
               top: Radius.circular(16),
             ),
-            child: Image.asset(
-              AppAssets.image1,
+            child: news.urlToImage != null && news.urlToImage!.isNotEmpty
+                ? Image.network(
+              news.urlToImage!,
               height: 200,
               width: double.infinity,
               fit: BoxFit.cover,
+              errorBuilder: (context, error, stackTrace) {
+                return Container(
+                  height: 200,
+                  width: double.infinity,
+                  color: AppColors.gray,
+                );
+              },
+            )
+                : Container(
+              height: 200,
+              width: double.infinity,
+              color: AppColors.black,
             ),
           ),
           SizedBox(height: 10),
           Text(
-            "A 40-year-old man has fallen approximately 200 feet to his death while canyoneering with three "
-                "others at Zion National Park in Utah, authorities confirmed."
-                "\r\nThe incident occurred on Saturday when the… [+1529 chars]",
+            news.description ?? "",
             style: AppTextStyle.medium14black,
           ),
           SizedBox(height: 10),
           ElevatedButton(
-            onPressed: () {
-              Navigator.of(context).pushNamed(AppRouts.newsScreenDetails);
+            onPressed: () async {
+              if (news.url == null || news.url!.isEmpty) return;
+
+              final Uri url = Uri.parse(news.url!);
+
+              await launchUrl(
+                url,
+                mode: LaunchMode.inAppWebView,
+              );
             },
-            style: ElevatedButton.styleFrom(
+              style: ElevatedButton.styleFrom(
                 backgroundColor:AppColors.black,
                 foregroundColor: Colors.white,
                 minimumSize: const Size(double.infinity, 48),
